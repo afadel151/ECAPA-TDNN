@@ -4,6 +4,11 @@ import torchaudio
 from torch.utils.data import Dataset
 import torchaudio.transforms as T
 
+def download_librispeech(data_root: str = "./LibriSpeech"):
+    os.makedirs(data_root, exist_ok=True)
+    train_dataset = torchaudio.datasets.LIBRISPEECH(data_root, url="train-clean-100", download=True)
+    test_dataset = torchaudio.datasets.LIBRISPEECH(data_root, url="test-clean", download=True)
+    return train_dataset, test_dataset
 
 
 class LibriSpeechDataset(Dataset):
